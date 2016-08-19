@@ -1,0 +1,51 @@
+MACRO 4 "27" Ability_BackStab
+/run PBC={0,0}i,k=1,2 while ub(p,i)do for j=1,k do if string.find(ub(p,i),UB[j])then PBC[j]=1 end end i=i+1 end
+END
+MACRO 5 "31" Ability_BackStab
+/run TDC={0,0,0,0}i,k=1,4 while ud(t,i)do for j=1,k do if string.find(ud(t,i),UD[j])then TDC[j]=1 if j==2 then name,y=ud(t,i)end end end i=i+1 end
+END
+MACRO 6 "33" Ability_BackStab
+/run x1,x2,x3=GAC(69)
+END
+MACRO 7 "36" Ability_BackStab
+/run a(53)a(63)
+END
+MACRO 8 "47" Ability_BackStab
+/run if not u(48)then a(48)end
+END
+MACRO 3 "50(charge)" Ability_Creature_Poison_04
+/run if ue(t)and not uf(p,t) then if d(t,3) then c(ds) elseif d(t,4) and uc(p) and GAC(51)==0 then c(brs)c(icp) elseif d(t,4) and not uc(p) then if IsShiftKeyDown() and GAC(67)~=0 then c(bts)c(ch) else c(bts)a(46)c(ds) end end end
+END
+MACRO 9 "53" Ability_BackStab
+/run --CastSpellByName("Demoralizing Shout")
+/run j=1 tg=gt()-scTD[j] if ue(t)and not uf(p,t)and d(t,3)and GAC(S)==0 and(TDC[j]==0 or tg>dshT)and um(p)>=10 then scTD[j]=gt()c(dsh)end
+END
+MACRO 12 "63" Ability_BackStab
+/run --CastSpellByName("Battle Shout")
+/run j=1 tg=gt()-scPB[j] if GAC(S)==0 and(PBC[j]==0 or tg>bsT)and um(p)>=10 then scPB[j]=gt()c(bs)end
+END
+MACRO 14 "69" Ability_BackStab
+/run --CastSpellByName("Sunder Armor")
+/run j=2 tg=gt()-scTD[j] if TDC[j]==0 then y=0 end if um(p)>=R1 and GAC(S)==0 and (y<5 or TDC[j]==0 or tg>saT)then scTD[j]=gt()c(sa)end
+END
+MACRO 15 "70" Ability_BackStab
+/run j=2 if PBC[j]==0 then c(sb) end
+END
+MACRO 16 "GL1" Ability_BullRush
+/run a=UseAction a(43)a(44)a(45) DCF=DEFAULT_CHAT_FRAME U=IsAutoRepeatAction ub=UnitBuff ud=UnitDebuff WS="WHISPER" ue=UnitExists uf=UnitIsFriend GAC=GetActionCooldown gt=GetTime tg=0 scPB={0,0} scTD={0,0,0} dshT=25 bsT=105 saT=23 swT=7
+END
+MACRO 17 "GL2" Ability_BullRush
+/run UIErrorsFrame:Hide()UIErrorsFrame:Clear()c=CastSpellByName u=IsCurrentAction s=SpellStopCasting um=UnitMana UM=UnitManaMax m=SendChatMessage uh=UnitHealth UH=UnitHealthMax p="player" t="target" d=CheckInteractDistance mb="Mocking Blow"
+END
+MACRO 18 "GL3" Ability_BullRush
+/run rd="Rend" dsh="Demoralizing Shout" sb="Shield Block" ex="Execute" rv="Revenge" sa="Sunder Armor" bs="Battle Shout" br="Bloodrage" hs="Heroic Strike" op="Overpower" ch="Charge" cl="Cleave" ds="Defensive Stance" hms="Hamstring" brs="Berserker Stance"
+END
+MACRO 20 "GL6" Ability_BullRush
+/run cs="Challenging Shout" PT=UnitName("player")
+END
+MACRO 19 "mod(aoe)" Spell_Shadow_Teleport
+/run a(55)a(54)a(49)a(50)a(47)a(56)c(br)a(27)a(31) if ue(t)and not uf(p,t)and d(t,3)and um(p)>=Rmin12 then a(70)c(rv)c(sba)a(69) if tg<saT and y==5 then a(36)c(cl) end end
+END
+MACRO 1 "mod4" Spell_Nature_WispSplode
+/run a(55)a(54)a(49)a(50)a(47)a(71)c(br)a(27)a(31) if ue(t)and not uf(p,t)and d(t,3)and um(p)>=Rmin12 then a(70)c(rv)c(sba)a(69) if tg<saT and y==5 then a(36)c(hs) end end
+END

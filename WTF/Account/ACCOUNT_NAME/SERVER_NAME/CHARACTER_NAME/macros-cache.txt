@@ -1,0 +1,32 @@
+MACRO 16777238 "49(Berserk Rage)" Ability_Creature_Poison_04
+/run a(47) if GAC("67","spell")==0 and not UnitAffectingCombat(p) then c(brs)c("Berserker Rage")c(bts)end
+END
+MACRO 16777239 "52(checkLastSta)" Ability_Creature_Poison_04
+/run lsB=0 local i=1 while ub(p,i)do if ub(p,i)==UB3 then lsb=1 else lsb=0 end i=i+1 end
+END
+MACRO 16777240 "54(stand&lgg)" Ability_Creature_Poison_04
+/run a(52) if uh(p)/UH(p)<=.07 then a(37)c("Last Stand") end if lsb==1 then UseInventoryItem(13) end
+END
+MACRO 16777241 "55(Shield Wall)" Ability_Creature_Poison_04
+/run e=0 j=2 tg=gt()-scPB[j] if uh(p)/UH(p)<=.3 then e=1 end
+/run if uh(p)/UH(p)>.3 then e=0 end
+/run if e==1 and tg>swT then scPB[j]=gt()c("Shield Wall")end
+END
+MACRO 16777243 "56(aoetaunt)" Ability_Creature_Poison_04
+/run a(47) if un("playertargettarget")~=PT and GAC(68)~=0 and GAC(72)==0 then c(bts)c(mb) c(ds) elseif un("playertargettarget")~=PT and GAC(68)==0 then c(ds) c("Taunt") elseif un("playertargettarget")~=PT and GAC(68)~=0 and GAC(72)~=0 then c(cs) end
+END
+MACRO 16777234 "71(taunt)" Ability_Creature_Poison_04
+/run a(47) if un("playertargettarget")~=PT and GAC(68,"spell")~=0 and GAC(72,"spell")==0 then c(bts)c("Mocking Blow") c(ds) elseif un("playertargettarget")~=PT and GAC(68,"spell")==0 then c(ds) c("Taunt")end
+END
+MACRO 16777242 "Berserk Rage" Ability_Creature_Disease_03
+/run a(47) if GAC("67","spell")==0 and not UnitAffectingCombat(p) then c(brs)c("Berserker Rage") else c(ds)end
+END
+MACRO 16777231 "GL4" Ability_BullRush
+/run UD={"WarCry","Sunder","ShockWave","Gouge"} UB={"BattleShout","Defend"} R1=12 R2=15 icp="Intercept" if R1<R2 then Rmin12=R1 else Rmin12=R2 end S=69 uc=UnitAffectingCombat bts= "Battle Stance" sba="Shield Bash" un=UnitName
+END
+MACRO 16777232 "GL5(buffcheckicn" Ability_BullRush
+/run UB1="Interface\\Icons\\Ability_Defend" UB2="Interface\\Icons\\Ability_Warrior_BattleShout" UB3="Interface\\Icons\\Spell_Holy_AshesToAshes"
+END
+MACRO 16777221 "Kick" Ability_Creature_Disease_03
+/run if UnitChannelInfo("target") then c("taunt")end
+END
