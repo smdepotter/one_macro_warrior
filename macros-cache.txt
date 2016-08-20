@@ -1,82 +1,79 @@
-MACRO 4 "27" Ability_BackStab
+MACRO 4 "25" Spell_ChargeNegative
 /run PBC={0,0}i,k=1,2 while ub(p,i)do for j=1,k do if string.find(ub(p,i),UB[j])then PBC[j]=1 end end i=i+1 end
 END
-MACRO 5 "31" Ability_BackStab
+MACRO 5 "26" Spell_ChargeNegative
 /run TDC={0,0,0,0}i,k=1,4 while ud(t,i)do for j=1,k do if string.find(ud(t,i),UD[j])then TDC[j]=1 if j==2 then name,y=ud(t,i)end end end i=i+1 end
 END
-MACRO 6 "33" Ability_BackStab
-/run x1,x2,x3=GAC(69)
+MACRO 7 "27" Spell_ChargeNegative
+/run a(30)a(31)
 END
-MACRO 7 "36" Ability_BackStab
-/run a(53)a(63)
-END
-MACRO 8 "47" Ability_BackStab
+MACRO 8 "28" Spell_ChargeNegative
 /run if not u(48)then a(48)end
 END
-MACRO 3 "50(charge)" Ability_Creature_Poison_04
+MACRO 3 "50(charge)" Spell_ChargePositive
 /run if ue(t)and not uf(p,t) then if d(t,3) then c(ds) elseif d(t,4) and uc(p) and GAC(51)==0 then c(brs)c(icp) elseif d(t,4) and not uc(p) then if IsShiftKeyDown() and GAC(67)~=0 then c(bts)c(ch) else c(bts)a(46)c(ds) end end end
 END
-MACRO 9 "53" Ability_BackStab
+MACRO 9 "30" Spell_ChargePositive
 /run --CastSpellByName("Demoralizing Shout")
 /run j=1 tg=gt()-scTD[j] if ue(t)and not uf(p,t)and d(t,3)and GAC(S)==0 and(TDC[j]==0 or tg>dshT)and um(p)>=10 then scTD[j]=gt()c(dsh)end
 END
-MACRO 12 "63" Ability_BackStab
+MACRO 12 "31" Spell_ChargePositive
 /run --CastSpellByName("Battle Shout")
 /run j=1 tg=gt()-scPB[j] if GAC(S)==0 and(PBC[j]==0 or tg>bsT)and um(p)>=10 then scPB[j]=gt()c(bs)end
 END
-MACRO 14 "69" Ability_BackStab
+MACRO 14 "29" Spell_ChargeNegative
 /run --CastSpellByName("Sunder Armor")
 /run j=2 tg=gt()-scTD[j] if TDC[j]==0 then y=0 end if um(p)>=R1 and GAC(S)==0 and (y<5 or TDC[j]==0 or tg>saT)then scTD[j]=gt()c(sa)end
 END
-MACRO 15 "70" Ability_BackStab
+MACRO 15 "32" Spell_ChargePositive
 /run j=2 if PBC[j]==0 then c(sb) end
 END
-MACRO 16 "GL1" Ability_BullRush
+MACRO 16 "CLIK1" Ability_BullRush
 /run a=UseAction a(43)a(44)a(45) DCF=DEFAULT_CHAT_FRAME U=IsAutoRepeatAction ub=UnitBuff ud=UnitDebuff WS="WHISPER" ue=UnitExists uf=UnitIsFriend GAC=GetActionCooldown gt=GetTime tg=0 scPB={0,0} scTD={0,0,0} dshT=25 bsT=105 saT=23 swT=7
 END
-MACRO 17 "GL2" Ability_BullRush
+MACRO 17 "CLIK2" Ability_BullRush
 /run UIErrorsFrame:Hide()UIErrorsFrame:Clear()c=CastSpellByName u=IsCurrentAction s=SpellStopCasting um=UnitMana UM=UnitManaMax m=SendChatMessage uh=UnitHealth UH=UnitHealthMax p="player" t="target" d=CheckInteractDistance mb="Mocking Blow"
 END
-MACRO 18 "GL3" Ability_BullRush
+MACRO 18 "CLIK3" Ability_BullRush
 /run rd="Rend" dsh="Demoralizing Shout" sb="Shield Block" ex="Execute" rv="Revenge" sa="Sunder Armor" bs="Battle Shout" br="Bloodrage" hs="Heroic Strike" op="Overpower" ch="Charge" cl="Cleave" ds="Defensive Stance" hms="Hamstring" brs="Berserker Stance"
 END
-MACRO 20 "GL6" Ability_BullRush
+MACRO 20 "CLIK6" Ability_BullRush
 /run cs="Challenging Shout" PT=UnitName("player")
 END
 MACRO 19 "mod(aoe)" Spell_Shadow_Teleport
-/run a(55)a(54)a(49)a(50)a(47)a(56)c(br)a(27)a(31) if ue(t)and not uf(p,t)and d(t,3)and um(p)>=Rmin12 then a(70)c(rv)c(sba)a(69) if tg<saT and y==5 then a(36)c(cl) end end
+/run a(55)a(54)a(49)a(50)a(28)a(56)c(br)a(25)a(26) if ue(t)and not uf(p,t)and d(t,3)and um(p)>=Rmin12 then a(32)c(rv)c(sba)a(29) if tg<saT and y==5 then a(27)c(cl) end end
 END
 MACRO 1 "mod4" Spell_Nature_WispSplode
-/run a(55)a(54)a(49)a(50)a(47)a(71)c(br)a(27)a(31) if ue(t)and not uf(p,t)and d(t,3)and um(p)>=Rmin12 then a(70)c(rv)c(sba)a(69) if tg<saT and y==5 then a(36)c(hs) end end
+/run a(55)a(54)a(49)a(50)a(28)a(71)c(br)a(25)a(26) if ue(t)and not uf(p,t)and d(t,3)and um(p)>=Rmin12 then a(32)c(rv)c(sba)a(29) if tg<saT and y==5 then a(27)c(hs) end end
 END
 --CHARACTER SPECIFIC
-MACRO 16777238 "49(Berserk Rage)" Ability_Creature_Poison_04
-/run a(47) if GAC("67","spell")==0 and not UnitAffectingCombat(p) then c(brs)c("Berserker Rage")c(bts)end
+MACRO 16777238 "49(Berserk Rage)" Spell_ChargePositive
+/run a(28) if GAC("67","spell")==0 and not UnitAffectingCombat(p) then c(brs)c("Berserker Rage")c(bts)end
 END
-MACRO 16777239 "52(checkLastSta)" Ability_Creature_Poison_04
+MACRO 16777239 "52(checkLastSta)" Spell_ChargePositive
 /run lsB=0 local i=1 while ub(p,i)do if ub(p,i)==UB3 then lsb=1 else lsb=0 end i=i+1 end
 END
-MACRO 16777240 "54(stand&lgg)" Ability_Creature_Poison_04
+MACRO 16777240 "54(stand&lgg)" Spell_ChargePositive
 /run a(52) if uh(p)/UH(p)<=.07 then a(37)c("Last Stand") end if lsb==1 then UseInventoryItem(13) end
 END
-MACRO 16777241 "55(Shield Wall)" Ability_Creature_Poison_04
+MACRO 16777241 "55(Shield Wall)" Spell_ChargePositive
 /run e=0 j=2 tg=gt()-scPB[j] if uh(p)/UH(p)<=.3 then e=1 end
 /run if uh(p)/UH(p)>.3 then e=0 end
 /run if e==1 and tg>swT then scPB[j]=gt()c("Shield Wall")end
 END
-MACRO 16777243 "56(aoetaunt)" Ability_Creature_Poison_04
-/run a(47) if un("playertargettarget")~=PT and GAC(68)~=0 and GAC(72)==0 then c(bts)c(mb) c(ds) elseif un("playertargettarget")~=PT and GAC(68)==0 then c(ds) c("Taunt") elseif un("playertargettarget")~=PT and GAC(68)~=0 and GAC(72)~=0 then c(cs) end
+MACRO 16777243 "56(aoetaunt)" Spell_ChargePositive
+/run a(28) if un("playertargettarget")~=PT and GAC(68)~=0 and GAC(72)==0 then c(bts)c(mb) c(ds) elseif un("playertargettarget")~=PT and GAC(68)==0 then c(ds) c("Taunt") elseif un("playertargettarget")~=PT and GAC(68)~=0 and GAC(72)~=0 then c(cs) end
 END
-MACRO 16777234 "71(taunt)" Ability_Creature_Poison_04
-/run a(47) if un("playertargettarget")~=PT and GAC(68,"spell")~=0 and GAC(72,"spell")==0 then c(bts)c("Mocking Blow") c(ds) elseif un("playertargettarget")~=PT and GAC(68,"spell")==0 then c(ds) c("Taunt")end
+MACRO 16777234 "71(taunt)" Spell_ChargePositive
+/run a(28) if un("playertargettarget")~=PT and GAC(68,"spell")~=0 and GAC(72,"spell")==0 then c(bts)c("Mocking Blow") c(ds) elseif un("playertargettarget")~=PT and GAC(68,"spell")==0 then c(ds) c("Taunt")end
 END
 MACRO 16777242 "Berserk Rage" Ability_Creature_Disease_03
-/run a(47) if GAC("67","spell")==0 and not UnitAffectingCombat(p) then c(brs)c("Berserker Rage") else c(ds)end
+/run a(28) if GAC("67","spell")==0 and not UnitAffectingCombat(p) then c(brs)c("Berserker Rage") else c(ds)end
 END
-MACRO 16777231 "GL4" Ability_BullRush
+MACRO 16777231 "CLIK4" Ability_BullRush
 /run UD={"WarCry","Sunder","ShockWave","Gouge"} UB={"BattleShout","Defend"} R1=12 R2=15 icp="Intercept" if R1<R2 then Rmin12=R1 else Rmin12=R2 end S=69 uc=UnitAffectingCombat bts= "Battle Stance" sba="Shield Bash" un=UnitName
 END
-MACRO 16777232 "GL5(buffcheckicn" Ability_BullRush
+MACRO 16777232 "CLIK5" Ability_BullRush
 /run UB1="Interface\\Icons\\Ability_Defend" UB2="Interface\\Icons\\Ability_Warrior_BattleShout" UB3="Interface\\Icons\\Spell_Holy_AshesToAshes"
 END
 MACRO 16777221 "Kick" Ability_Creature_Disease_03
