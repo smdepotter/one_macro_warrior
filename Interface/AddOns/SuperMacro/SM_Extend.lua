@@ -4,7 +4,6 @@ SlashCmdList["INIT"]=function()
 	init()
 end
 
-
 function init()
 --Adds keybinds to Actionbar
   local class=UnitClass("player")
@@ -153,8 +152,9 @@ function InMeleeRange()
   return CheckInteractDistance("target",3)
 end
 function TargetNotOnMe()
-	if UnitName("playertargettarget")~=UnitName("player") then Taunt()
-	end
+	if UnitName("playertargettarget")~=UnitName("player") then return true
+    else return false
+     end
 end
 function MyRage()
   return UnitMana("player")
@@ -173,22 +173,24 @@ end
 
 ----------**ABILITIES**----------
 function single()
-	if MyHealthPct()<=.07 then UseHealthStone() UseHealingPotion() cast("Last Stand") end -- Add Greater Healing Potion
-	if MyHealthPct()<=.225 then cast("Shield Wall") end
-	if IsShiftKeyDown() then Charge() end
-	if not InCombat() then BerserkerRage() UseAction(61) end
-	TargetNotOnMe()
-	AutoAttack()
-	cast("Bloodrage")
-	if MyRage()>=10 then
-		StanceCast("Defensive Stance") cast("Shield Block") cast("Revenge")
-		if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 then
-			cast("Thunder Clap") 
-			StanceCast("Battle Stance") 
-		end
-	  DotCast("Demoralizing Shout") SelfBuff("Battle Shout") cast("Shield Bash") StackCast("Sunder Armor",5) cast("Heroic Strike")
-	end
-end
+    AutoAttack()
+    if MyHealthPct()<=.07 then UseHealthStone() UseHealingPotion() cast("Last Stand") end
+    if MyHealthPct()<=.225 then StanceCast("Defensive Stance") cast("Shield Wall") end
+    if IsShiftKeyDown() then Charge() 
+        elseif IsAltKeyDown() then breakFear() 
+           elseif not InCombat() then BerserkerRage() 
+            elseif not InMeleeRange() then UseAction(61) 
+                elseif TargetNotOnMe() then Taunt()
+                else
+                    StanceCast("Defensive Stance") cast("Shield Block") cast("Revenge") -- Retain enough rage for emergency Mocking Blow(?)
+                    if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 and InMeleeRange() then
+                        cast("Thunder Clap") 
+                        StanceCast("Battle Stance") 
+                    end
+                    DotCast("Demoralizing Shout") SelfBuff("Battle Shout") cast("Shield Bash") StackCast("Sunder Armor",5) cast("Heroic Strike")
+                end
+
+            end
 function BerserkerRage()
 	if not OnCooldown("Berserker Rage") then StanceCast("Berserker Stance") cast("Berserker Rage")
 	end
@@ -231,5 +233,25 @@ function UseHealingPotion()
     use("Major Healing Potion")
     use("Superior Healing Potion")
     use("Greater Healing Potion")
-
 end
+function fury_single()
+--execute when below 20%. Try to ramp up to >=90 rage beforehand
+--recklessness if 
+--deathwish on cooldown/mighty rage potion/Juju Flurry. Mix deathwish in with Racial/Recklessness. Deathwish=30 sec, Recklessness=15sec
+--blood fury on cooldown orc racial/troll racial  
+    --bloodthirst
+    --whirlwind
+    -- if below 25rage then overpower (30?) 30 
+    --overpower 50 rage then heroic strike 46 rage(?). only usable for 3 seconds after
+
+
+    --AOE needed WW 2+ targets
+    end
+function breakFear()
+    if not OnCooldown("Berserker Rage") then StanceCast("Berserker Stance")end
+    if not HasFullControl() then cast("Berserker Rage") end
+    if OnCooldown("Berserker Rage") then StanceCast("Defensive Stance") end
+end
+function Rotation()
+
+    end
