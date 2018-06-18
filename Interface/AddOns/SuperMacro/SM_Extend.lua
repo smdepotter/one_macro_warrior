@@ -15,7 +15,7 @@ function init()
   SHOW_MULTI_ACTIONBAR_4=1
   ALWAYS_SHOW_MULTI_ACTIONBAR=1
   MultiActionBar_Update()
-  local index=CreateMacro("aoe",326,"/script aoe()",1,1)
+  local index=CreateMacro("single",134,"/script single()",1,1)
   PickupMacro(index)
   PlaceAction(1)
   PickupMacro(index)	
@@ -26,22 +26,11 @@ function init()
   PlaceAction(97)
   PickupMacro(index)
   PlaceAction(109)
-  index=CreateMacro("single",134,"/script single()",1,1)
-  PickupMacro(index)
-  PlaceAction(2)
-  PickupMacro(index)
-  PlaceAction(74)
-  PickupMacro(index)
-  PlaceAction(86)
-  PickupMacro(index)
-  PlaceAction(98)
-  PickupMacro(index)
-  PlaceAction(110)
   if class=="Warrior" and SpellExists("Shoot") then 
     PickupSpell(SpellNum("Shoot "..RangedWeaponType()),BOOKTYPE_SPELL)
     PlaceAction(61)
   end
-  PickupSpell(SpellNum("Attack"),BOOKTYPE_SPELL)
+  PickupSpell(SpellNum("Attack"),BOOKTYPE_SPELL) --does not replace action if item exists prior to init
     PlaceAction(62)
   ClearTutorials()
   ReloadUI()
@@ -95,16 +84,17 @@ function DotCast(spell)
  if not buffed(spell,"target") then cast(spell) end
 end
 function StackCast(spell,numstacks)
- local spell_icon=GetSpellTexture(SpellNum(spell),BOOKTYPE_SPELL)
- local count,icon
- for i=1,16 do 
-  icon,count,bufftype,duration,expiration,caster = UnitDebuff("target",i) 
-  if icon==spell_icon then
-   break ; end
- end
+	local spell_icon=GetSpellTexture(SpellNum(spell),BOOKTYPE_SPELL)
+	local count,icon
+	for i=1,16 do 
+		icon,count,bufftype,duration,expiration,caster = UnitDebuff("target",i) 
+		if icon==spell_icon then
+			break ;
+			 end
+		end
  if not count then count=0 end
  if count<numstacks then  
-   if count>=numstacks then CooldownCast(spell,20) else cast(spell) end
+ 	if count>=numstacks then CooldownCast(spell,20) else cast(spell) end
  end
 end	
 function MyHealthPct()
@@ -183,20 +173,20 @@ end
 
 ----------**ABILITIES**----------
 function single()
-	if MyHealthPct()<=.07 then UseHealthStone() ; cast("Last Stand") end -- Add Greater Healing Potion
-	if MyHealthPct()<=.2 then cast("Shield Wall") end
+	if MyHealthPct()<=.07 then UseHealthStone() UseHealingPotion() cast("Last Stand") end -- Add Greater Healing Potion
+	if MyHealthPct()<=.225 then cast("Shield Wall") end
 	if IsShiftKeyDown() then Charge() end
 	if not InCombat() then BerserkerRage() UseAction(61) end
 	TargetNotOnMe()
 	AutoAttack()
 	cast("Bloodrage")
-	if MyRage()>=10 then  -- Consider Change to 15. Allow Extra rage to pool into Mocking Blow
+	if MyRage()>=10 then
 		StanceCast("Defensive Stance") cast("Shield Block") cast("Revenge")
 		if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 then
 			cast("Thunder Clap") 
 			StanceCast("Battle Stance") 
 		end
-	  DotCast("Demoralizing Shout") SelfBuff("Battle Shout") cast("Shield Bash") StackCast("Sunder Armor",5) cast("Heroic Strike") --- ADD DOT CAST THUNDERCLAP BACK IN
+	  DotCast("Demoralizing Shout") SelfBuff("Battle Shout") cast("Shield Bash") StackCast("Sunder Armor",5) cast("Heroic Strike")
 	end
 end
 function BerserkerRage()
@@ -236,4 +226,10 @@ function SelfBuff(spell)
 if not buffed(spell,"player") then
 	CastSpellByName(spell,1)
 end
+end
+function UseHealingPotion()
+    use("Major Healing Potion")
+    use("Superior Healing Potion")
+    use("Greater Healing Potion")
+
 end
