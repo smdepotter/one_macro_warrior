@@ -178,11 +178,11 @@ function single()
     if MyHealthPct()<=.225 then StanceCast("Defensive Stance") cast("Shield Wall") end
     if IsShiftKeyDown() then Charge() 
         elseif IsAltKeyDown() then breakFear() 
-           elseif not InCombat() then BerserkerRage() 
-            elseif not InMeleeRange() then UseAction(61) 
+           elseif not InCombat() then BerserkerRage() Shoot()
+            elseif not InMeleeRange() then Shoot() 
                 elseif TargetNotOnMe() then Taunt()
                 else
-                    StanceCast("Defensive Stance") cast("Shield Block") cast("Revenge") -- Retain enough rage for emergency Mocking Blow(?)
+                    StanceCast("Defensive Stance") cast("Bloodrage") cast("Shield Block") cast("Revenge") -- Retain enough rage for emergency Mocking Blow(?)
                     if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 and InMeleeRange() then
                         cast("Thunder Clap") 
                         StanceCast("Battle Stance") 
@@ -197,7 +197,7 @@ function BerserkerRage()
 end
 function Charge() 
 	if not InCombat() and not InMeleeRange() and not OnCooldown("Charge") then
-		BerserkerRage() StanceCast("Battle Stance") UseAction(61) cast("Charge")
+		BerserkerRage() StanceCast("Battle Stance") Shoot() cast("Charge")
 	end
 	if InCombat() and not InMeleeRange() and MyRage()>=10 and not OnCooldown("Intercept") then
 		StanceCast("Berserker Stance")  cast("Intercept") 
@@ -234,24 +234,28 @@ function UseHealingPotion()
     use("Superior Healing Potion")
     use("Greater Healing Potion")
 end
-function fury_single()
---execute when below 20%. Try to ramp up to >=90 rage beforehand
---recklessness if 
---deathwish on cooldown/mighty rage potion/Juju Flurry. Mix deathwish in with Racial/Recklessness. Deathwish=30 sec, Recklessness=15sec
---blood fury on cooldown orc racial/troll racial  
-    --bloodthirst
-    --whirlwind
-    -- if below 25rage then overpower (30?) 30 
-    --overpower 50 rage then heroic strike 46 rage(?). only usable for 3 seconds after
+-- function fury_single()
+-- --execute when below 20%. Try to ramp up to >=90 rage beforehand
+-- --recklessness if 
+-- --deathwish on cooldown/mighty rage potion/Juju Flurry. Mix deathwish in with Racial/Recklessness. Deathwish=30 sec, Recklessness=15sec
+-- --blood fury on cooldown orc racial/troll racial  
+--     --bloodthirst
+--     --whirlwind
+--     -- if below 25rage then overpower (30?) 30 
+--     --overpower 50 rage then heroic strike 46 rage(?). only usable for 3 seconds after
 
 
-    --AOE needed WW 2+ targets
-    end
+--     --AOE needed WW 2+ targets
+
+--     if not OnCooldown("Bloodthirst") then cast("Bloodthirst")
+--         elseif not OnCooldown("Whirlwind") then cast("Whirlwind")
+--             elseif not MyRage()>50 then cast("Heroic Strike")
+--     end
 function breakFear()
     if not OnCooldown("Berserker Rage") then StanceCast("Berserker Stance")end
     if not HasFullControl() then cast("Berserker Rage") end
     if OnCooldown("Berserker Rage") then StanceCast("Defensive Stance") end
 end
-function Rotation()
-
-    end
+function Shoot()
+    UseAction(61)
+end
