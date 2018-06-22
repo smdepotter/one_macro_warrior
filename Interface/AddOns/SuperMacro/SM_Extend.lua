@@ -1,4 +1,81 @@
 Printd("SM_extend.lua loaded OK!")
+
+--------------------------------------------------
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+
+
+FSMB = CreateFrame("Button","FSMB",UIParent)
+-- register the events we want to use (this is why we made the frame)
+FSMB:RegisterEvent("ADDON_LOADED") -- register event "ADDON_LOADED"
+FSMB:RegisterEvent("RAID_ROSTER_UPDATE")
+FSMB:RegisterEvent("PARTY_MEMBERS_CHANGED")
+FSMB:RegisterEvent("PARTY_INVITE_REQUEST")
+FSMB:RegisterEvent("CHAT_MSG_ADDON")
+FSMB:RegisterEvent("SPELLCAST_START")
+FSMB:RegisterEvent("SPELLCAST_INTERRUPTED")
+FSMB:RegisterEvent("SPELLCAST_FAILED")
+FSMB:RegisterEvent("SPELLCAST_DELAYED")
+FSMB:RegisterEvent("SPELLCAST_STOP")
+FSMB:RegisterEvent("SPELLCAST_CHANNEL_START")
+FSMB:RegisterEvent("SPELLCAST_CHANNEL_UPDATE")
+FSMB:RegisterEvent("SPELLCAST_CHANNEL_STOP")
+FSMB:RegisterEvent("PLAYER_REGEN_ENABLED")
+FSMB:RegisterEvent("PLAYER_REGEN_DISABLED")
+FSMB:RegisterEvent("TRADE_SHOW")
+FSMB:RegisterEvent("TRADE_CLOSED")
+FSMB:RegisterEvent("CONFIRM_SUMMON")
+FSMB:RegisterEvent("RESURRECT_REQUEST")
+FSMB:RegisterEvent("UNIT_INVENTORY_CHANGED")
+FSMB:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START")
+FSMB:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP")
+FSMB:RegisterEvent("MERCHANT_UPDATE")
+FSMB:RegisterEvent("MERCHANT_FILTER_ITEM_UPDATE")
+FSMB:RegisterEvent("MERCHANT_SHOW")
+FSMB:RegisterEvent("PLAYER_LOGIN")
+FSMB:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
+FSMB:RegisterEvent("START_AUTOREPEAT_SPELL")
+FSMB:RegisterEvent("STOP_AUTOREPEAT_SPELL")
+FSMB:RegisterEvent("ITEM_LOCK_CHANGED")
+FSMB:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
+FSMBtooltip=CreateFrame("GAMETOOLTIP", "FSMBtooltip", UIParent, "GameTooltipTemplate")
+
+
+
+-- create the OnEvent function
+function FSMB:OnEvent()-- creates a table where you can store all your settings, adding the table to the toc file allows the data to be stored on logout and /reloadui
+        FSMB:print("Addon loaded successfully!")
+        FSMB:UnregisterEvent("Addon Loaded") -- unregister the event as we dont need it anymore
+end
+
+-- this will send all the registered events to the OnEvent function
+FSMB:SetScript("OnEvent", FSMB.OnEvent) -- event handler 
+
+-- print function
+function FSMB:print(msg)
+    if msg then
+        DEFAULT_CHAT_FRAME:AddMessage("|cffFE2E2EF|cffF78181S|cffF6CECEM|cffFBEFEFB|r: "..msg)
+    end
+end
+
+
+
+
+
+
+
+
+
+
+-------------------------
+-------------------------
+-------------------------
+-------------------------
+
+
 SLASH_INIT1="/init"
 SlashCmdList["INIT"]=function()
 	init()
@@ -170,7 +247,6 @@ function MyStance()
  if isActive then currstance=3 ; end
  return currstance
 end
-
 ----------**ABILITIES**----------
 function single()
     AutoAttack()
@@ -235,27 +311,37 @@ function UseHealingPotion()
     use("Greater Healing Potion")
 end
 -- function fury_single()
--- --execute when below 20%. Try to ramp up to >=90 rage beforehand
--- --recklessness if 
--- --deathwish on cooldown/mighty rage potion/Juju Flurry. Mix deathwish in with Racial/Recklessness. Deathwish=30 sec, Recklessness=15sec
--- --blood fury on cooldown orc racial/troll racial  
---     --bloodthirst
---     --whirlwind
---     -- if below 25rage then overpower (30?) 30 
---     --overpower 50 rage then heroic strike 46 rage(?). only usable for 3 seconds after
+-- -- --execute when below 20%. Try to ramp up to >=90 rage beforehand
+-- -- --recklessness if 
+-- -- --deathwish on cooldown/mighty rage potion/Juju Flurry. Mix deathwish in with Racial/Recklessness. Deathwish=30 sec, Recklessness=15sec
+-- -- --blood fury on cooldown orc racial/troll racial  
+-- --     --bloodthirst
+-- --     --whirlwind
+-- --     -- if below 25rage then overpower (30?) 30 
+-- --     --overpower 50 rage then heroic strike 46 rage(?). only usable for 3 seconds after
 
 
---     --AOE needed WW 2+ targets
+-- --     --AOE needed WW 2+ targets
+-- AutoAttack()
 
 --     if not OnCooldown("Bloodthirst") then cast("Bloodthirst")
 --         elseif not OnCooldown("Whirlwind") then cast("Whirlwind")
 --             elseif not MyRage()>50 then cast("Heroic Strike")
 --     end
-function breakFear()
-    if not OnCooldown("Berserker Rage") then StanceCast("Berserker Stance")end
-    if not HasFullControl() then cast("Berserker Rage") end
-    if OnCooldown("Berserker Rage") then StanceCast("Defensive Stance") end
-end
-function Shoot()
-    UseAction(61)
-end
+-- function breakFear()
+--     if not OnCooldown("Berserker Rage") then StanceCast("Berserker Stance")end
+--     if not HasFullControl() then cast("Berserker Rage") end
+--     if OnCooldown("Berserker Rage") then StanceCast("Defensive Stance") end
+
+-------------premade macro for slam---------
+-- /run if false then CastSpellByName"Slam()" end
+-- /run 
+-- if not _a then for i=1,72 do 
+-- if IsAttackAction(i) then _a=i end
+--  end end if not IsCurrentAction(_a)then UseAction(_a)end 
+-- if st_timer>UnitAttackSpeed"player"*0.9 then CastSpellByName"Slam()" end
+
+-- if my 3.8>3*.8 then cast slam 
+------------------
+
+
