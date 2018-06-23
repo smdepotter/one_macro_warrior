@@ -9,62 +9,68 @@ Printd("SM_extend.lua loaded OK!")
 
 FSMB = CreateFrame("Button","FSMB",UIParent)
 -- register the events we want to use (this is why we made the frame)
-FSMB:RegisterEvent("ADDON_LOADED") -- register event "ADDON_LOADED"
-FSMB:RegisterEvent("RAID_ROSTER_UPDATE")
-FSMB:RegisterEvent("PARTY_MEMBERS_CHANGED")
-FSMB:RegisterEvent("PARTY_INVITE_REQUEST")
-FSMB:RegisterEvent("CHAT_MSG_ADDON")
-FSMB:RegisterEvent("SPELLCAST_START")
-FSMB:RegisterEvent("SPELLCAST_INTERRUPTED")
-FSMB:RegisterEvent("SPELLCAST_FAILED")
-FSMB:RegisterEvent("SPELLCAST_DELAYED")
-FSMB:RegisterEvent("SPELLCAST_STOP")
-FSMB:RegisterEvent("SPELLCAST_CHANNEL_START")
-FSMB:RegisterEvent("SPELLCAST_CHANNEL_UPDATE")
-FSMB:RegisterEvent("SPELLCAST_CHANNEL_STOP")
-FSMB:RegisterEvent("PLAYER_REGEN_ENABLED")
-FSMB:RegisterEvent("PLAYER_REGEN_DISABLED")
-FSMB:RegisterEvent("TRADE_SHOW")
-FSMB:RegisterEvent("TRADE_CLOSED")
-FSMB:RegisterEvent("CONFIRM_SUMMON")
-FSMB:RegisterEvent("RESURRECT_REQUEST")
-FSMB:RegisterEvent("UNIT_INVENTORY_CHANGED")
-FSMB:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START")
-FSMB:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP")
-FSMB:RegisterEvent("MERCHANT_UPDATE")
-FSMB:RegisterEvent("MERCHANT_FILTER_ITEM_UPDATE")
-FSMB:RegisterEvent("MERCHANT_SHOW")
-FSMB:RegisterEvent("PLAYER_LOGIN")
-FSMB:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
-FSMB:RegisterEvent("START_AUTOREPEAT_SPELL")
-FSMB:RegisterEvent("STOP_AUTOREPEAT_SPELL")
-FSMB:RegisterEvent("ITEM_LOCK_CHANGED")
-FSMB:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+FSMB:RegisterEvent("ADDON_LOADED") -- register event "ADDON_LOADED
+FSMB:RegisterEvent("CHAT_MSG_COMBAT_SELF_HITS")
 
 FSMBtooltip=CreateFrame("GAMETOOLTIP", "FSMBtooltip", UIParent, "GameTooltipTemplate")
 
-
-
 -- create the OnEvent function
-function FSMB:OnEvent()-- creates a table where you can store all your settings, adding the table to the toc file allows the data to be stored on logout and /reloadui
-        FSMB:print("Addon loaded successfully!")
-        FSMB:UnregisterEvent("Addon Loaded") -- unregister the event as we dont need it anymore
+
+local hello="i didnt hit"
+--debugger
+
+
+st_timer = 0.0
+
+
+
+local function GetWeaponSpeed()
+    mainSpeed, offSpeed = UnitAttackSpeed("player")
+    return mainSpeed
 end
 
--- this will send all the registered events to the OnEvent function
-FSMB:SetScript("OnEvent", FSMB.OnEvent) -- event handler 
+local function ResetTimer()
+    st_timer = GetWeaponSpeed()
 
--- print function
+end
+
+local function ShouldResetTimer()
+    local percentTime = st_timer / GetWeaponSpeed()
+    return (percentTime < 0.025)
+end
+
+
+function FSMB:OnEvent()
+    if (event == "ADDON_LOADED") then
+    
+
+    elseif (event == "CHAT_MSG_COMBAT_SELF_MISSES") then
+        if (ShouldResetTimer()) then
+            ResetTimer()
+        end
+
+    elseif (event == "CHAT_MSG_COMBAT_SELF_HITS") then
+        if (string.find(arg1, "You hit") or string.find(arg1, "You crit")) then
+            if (ShouldResetTimer()) then
+                ResetTimer()
+            end
+        end
+    end
+
+end
+
+-- -- this will send all the registered events to the OnEvent function
+FSMB:SetScript("OnEvent", FSMB.OnEvent)
+-- event handler 
 function FSMB:print(msg)
     if msg then
         DEFAULT_CHAT_FRAME:AddMessage("|cffFE2E2EF|cffF78181S|cffF6CECEM|cffFBEFEFB|r: "..msg)
     end
 end
 
-
-
-
-
+function Poop()
+ print(GetWeaponSpeed())
+end
 
 
 
@@ -298,6 +304,9 @@ function Taunt()
 	if not OnCooldown("Mocking Blow") and MyRage()>9 then 
 		StanceCast("Battle Stance") 
 	end
+end
+function Shoot()
+    UseAction(61)
 end
 function SelfBuff(spell)
 --Important spell which allows a player to buff themselves without recasting. Only buffs if you don't have buff
