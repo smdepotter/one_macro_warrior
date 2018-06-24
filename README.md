@@ -13,6 +13,7 @@
 3. Type /init in-game
 
 ![](https://i.imgur.com/E2qoJIK.png)
+
 <sup>Shoot and Auto Attack must remain above 1 & 2.</sup>
 
 # **2. HOW TO**
