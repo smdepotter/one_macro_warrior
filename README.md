@@ -1,6 +1,8 @@
 
 ![](http://i.imgur.com/z7ZczPu.png)
 ---
+[![Github All Releases](https://img.shields.io/github/downloads/smdepotter/one_macro_warrior/total.svg)](https://github.com/smdepotter/one_macro_warrior)
+[![Build Status](https://img.shields.io/github/issues/smdepotter/one_macro_warrior.svg)](https://github.com/smdepotter/one_macro_warrior/issues)
 
 
 
