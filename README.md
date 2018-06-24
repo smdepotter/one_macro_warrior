@@ -1,8 +1,9 @@
 
 ![](http://i.imgur.com/z7ZczPu.png)
 ---
-[![Github All Releases](https://img.shields.io/github/downloads/smdepotter/one_macro_warrior/total.svg)](https://github.com/smdepotter/one_macro_warrior)
-[![Build Status](https://img.shields.io/github/issues/smdepotter/one_macro_warrior.svg)](https://github.com/smdepotter/one_macro_warrior/issues)
+[![Github Downloads](https://img.shields.io/github/downloads/smdepotter/one_macro_warrior/total.svg)](https://github.com/smdepotter/one_macro_warrior)
+[![GitHub Release Version](https://img.shields.io/github/release/smdepotter/one_macro_warrior.svg)](https://github.com/smdepotter/one_macro_warrior/releases)
+[![Issues Open](https://img.shields.io/github/issues/smdepotter/one_macro_warrior.svg)](https://github.com/smdepotter/one_macro_warrior/issues)
 
 
 
