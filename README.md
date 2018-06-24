@@ -1,11 +1,14 @@
 
 ![](http://i.imgur.com/z7ZczPu.png)
 ---
+[![Github Downloads](https://img.shields.io/github/downloads/smdepotter/one_macro_warrior/total.svg)](https://github.com/smdepotter/one_macro_warrior)
+[![GitHub Release Version](https://img.shields.io/github/release/smdepotter/one_macro_warrior.svg)](https://github.com/smdepotter/one_macro_warrior/releases)
+[![Issues Open](https://img.shields.io/github/issues/smdepotter/one_macro_warrior.svg)](https://github.com/smdepotter/one_macro_warrior/issues)
 
 
 
 # **1. SETUP**
-1. [Download SuperMacro](https://github.com/Monteo/SuperMacro) from Monteo
+1. [Download SuperMacro from Monteo](https://github.com/Monteo/SuperMacro)
 2. [Download One Macro: Warrior](https://github.com/smdepotter/one_macro_warrior/archive/master.zip)
 
 ![](https://i.imgur.com/T15RR1s.png)
