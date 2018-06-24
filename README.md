@@ -6,9 +6,12 @@
 
 # **1. SETUP**
 1. [Download SuperMacro](https://github.com/Monteo/SuperMacro) from Monteo
-1. [Download One Macro: Warrior](https://github.com/smdepotter/one_macro_warrior/archive/master.zip)
-2. Type /init
-3. Shoot and Auto Attack must remain above 1 & 2 (image below OUTDATED). 
+2. [Download One Macro: Warrior](https://github.com/smdepotter/one_macro_warrior/archive/master.zip)
+
+![](https://i.imgur.com/T15RR1s.png)
+
+3. Type /init in-game
+4. Shoot and Auto Attack must remain above 1 & 2 (image below OUTDATED). 
 
 ![](https://i.imgur.com/E2qoJIK.png)
 
