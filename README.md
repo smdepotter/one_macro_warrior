@@ -5,7 +5,7 @@
 
 
 # **1. SETUP**
-1. [Download](https://github.com/smdepotter/one_macro_warrior/releases)
+1. [Download](https://github.com/smdepotter/one_macro_warrior/archive/master.zip)
 2. Type /init
 3. Shoot and Auto Attack must remain above 1 & 2 (image below OUTDATED). 
 
