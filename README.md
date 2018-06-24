@@ -5,7 +5,7 @@
 
 
 # **1. SETUP**
-1. [Download SuperMacro](https://github.com/Monteo/SuperMacro) from Monteo
+1. [Download SuperMacro from Monteo](https://github.com/Monteo/SuperMacro)
 2. [Download One Macro: Warrior](https://github.com/smdepotter/one_macro_warrior/archive/master.zip)
 
 ![](https://i.imgur.com/T15RR1s.png)
