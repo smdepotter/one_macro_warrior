@@ -11,9 +11,9 @@
 ![](https://i.imgur.com/T15RR1s.png)
 
 3. Type /init in-game
-4. Shoot and Auto Attack must remain above 1 & 2 (image below OUTDATED). 
 
 ![](https://i.imgur.com/E2qoJIK.png)
+<sup>Shoot and Auto Attack must remain above 1 & 2.</sup>
 
 # **2. HOW TO**
 1. Use the **'single'** macro
