@@ -29,6 +29,12 @@ SM_Extended.lua from One Macro: Warrior is inserted as a separate file that will
 
 [Download One Macro: Warrior](https://github.com/smdepotter/one_macro_warrior/releases)
 
+## Features
+
+* One-button **'single'** for automatic Tanking Spells
+* Hold **Shift** to Charge/Intercept
+* Hold **Alt** to preempt breaking Fear
+
 ## Developing
 
 To start developing, clone/fork/branch the existing source to your World of Warcraft directory. 
@@ -39,12 +45,6 @@ Replace/Merge all existing files
 Manually edit .gitignore to include extraneous AddOns from your /World of Warcraft directory
 Open SM-Extended.LUA
 ```
-
-## Features
-
-* One-button for automatic Tanking Spells
-* Hold **Shift** to Charge/Intercept
-* Hold **Alt** to preempt breaking Fear
 
 ## Contributing
 
