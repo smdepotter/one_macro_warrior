@@ -177,7 +177,8 @@ function single()
     if MyHealthPct()<=.07 then UseHealthStone() UseHealingPotion() cast("Last Stand") end
     if MyHealthPct()<=.225 then StanceCast("Defensive Stance") cast("Shield Wall") end
     if IsShiftKeyDown() then Charge() 
-        elseif IsAltKeyDown() then breakFear() 
+        elseif IsAltKeyDown() then breakFear()
+        elseif IsCtrlKeyDown() then cast("Challenging Shout") 
            elseif not InCombat() then BerserkerRage() Shoot()
             elseif not InMeleeRange() then Shoot() 
                 elseif TargetNotOnMe() then Taunt()
