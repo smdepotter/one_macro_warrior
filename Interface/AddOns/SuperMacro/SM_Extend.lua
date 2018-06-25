@@ -170,12 +170,7 @@ function MyStance()
  if isActive then currstance=3 ; end
  return currstance
 end
--- function Incapacitated()
--- function Poop()
---   for x=1,16 do local name,count,debuffType=UnitDebuff("target",x); if name=="Interface\\Icons\\Ability_warrior_warcry" then print("THIS IS DEMO") end end
 
---   for i=1,16 do local D= UnitDebuff("target",i); if D then print(i.."="..D) end end
--- end
 ----------**ABILITIES**----------
 function single()
     AutoAttack()
@@ -187,12 +182,10 @@ function single()
            elseif not InCombat() then BerserkerRage() Shoot()
             elseif not InMeleeRange() then Shoot() 
                 elseif TargetNotOnMe() then Taunt()
+                  elseif MyStance()==1 and NeedToThunderClap() then cast("Thunder Clap") 
                 else
                     StanceCast("Defensive Stance") cast("Bloodrage") cast("Shield Block") cast("Revenge") -- Retain enough rage for emergency Mocking Blow(?)
-                    if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 and InMeleeRange() then
-                        cast("Thunder Clap") 
-                        StanceCast("Battle Stance") 
-                    end
+                    if NeedToThunderClap() then StanceCast("Battle Stance") end
                     DotCast("Demoralizing Shout") SelfBuff("Battle Shout") cast("Shield Bash") StackCast("Sunder Armor",5) cast("Heroic Strike")
                 end
 end
@@ -246,4 +239,8 @@ function breakFear()
 end
 function Shoot()
     UseAction(61)
+end
+function NeedToThunderClap()
+if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 and InMeleeRange() then return true
+  else return false end
 end
