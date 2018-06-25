@@ -34,6 +34,7 @@ SM_Extended.lua from One Macro: Warrior is inserted as a separate file that will
 * One-button **'single'** for automatic Tanking Spells
 * Hold **Shift** to Charge/Intercept
 * Hold **Alt** to preempt breaking Fear
+* Hold **Ctrl** to AOE Taunt
 
 ## Developing
 
