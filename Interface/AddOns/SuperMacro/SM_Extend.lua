@@ -11,6 +11,7 @@ FSMB = CreateFrame("Button","FSMB",UIParent)
 -- register the events we want to use (this is why we made the frame)
 FSMB:RegisterEvent("ADDON_LOADED") -- register event "ADDON_LOADED
 FSMB:RegisterEvent("CHAT_MSG_COMBAT_SELF_HITS")
+FSMB:RegisterEvent("UNIT_INVENTORY_CHANGED")
 
 FSMBtooltip=CreateFrame("GAMETOOLTIP", "FSMBtooltip", UIParent, "GameTooltipTemplate")
 
@@ -43,13 +44,14 @@ end
 function FSMB:OnEvent()
     if (event == "ADDON_LOADED") then
     
+    elseif (event == "UNIT_INVENTORY_CHANGED") then CheckTotalAvoidance()
 
     elseif (event == "CHAT_MSG_COMBAT_SELF_MISSES") then
         if (ShouldResetTimer()) then
             ResetTimer()
         end
 
-    elseif (event == "CHAT_MSG_COMBAT_SELF_HITS") then
+    elseif (event == "CHAT_MSG_COMBAT_SELF_HITS") then 
         if (string.find(arg1, "You hit") or string.find(arg1, "You crit")) then
             if (ShouldResetTimer()) then
                 ResetTimer()
@@ -72,6 +74,9 @@ function Poop()
  print(GetWeaponSpeed())
 end
 
+function CheckTotalAvoidance()
+  DEFAULT_CHAT_FRAME:AddMessage("Need 102.4 combat table coverage. Currently at: "..string.format("%.2f", GetDodgeChance()+GetBlockChance()+GetParryChance() +5))
+end
 
 
 
