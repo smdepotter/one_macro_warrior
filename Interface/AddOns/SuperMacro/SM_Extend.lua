@@ -170,7 +170,12 @@ function MyStance()
  if isActive then currstance=3 ; end
  return currstance
 end
+-- function Incapacitated()
+-- function Poop()
+--   for x=1,16 do local name,count,debuffType=UnitDebuff("target",x); if name=="Interface\\Icons\\Ability_warrior_warcry" then print("THIS IS DEMO") end end
 
+--   for i=1,16 do local D= UnitDebuff("target",i); if D then print(i.."="..D) end end
+-- end
 ----------**ABILITIES**----------
 function single()
     AutoAttack()
@@ -178,7 +183,7 @@ function single()
     if MyHealthPct()<=.225 then StanceCast("Defensive Stance") cast("Shield Wall") end
     if IsShiftKeyDown() then Charge() 
         elseif IsAltKeyDown() then breakFear()
-        elseif IsCtrlKeyDown() then cast("Challenging Shout") 
+        elseif IsControlKeyDown() then cast("Challenging Shout") 
            elseif not InCombat() then BerserkerRage() Shoot()
             elseif not InMeleeRange() then Shoot() 
                 elseif TargetNotOnMe() then Taunt()
@@ -190,8 +195,7 @@ function single()
                     end
                     DotCast("Demoralizing Shout") SelfBuff("Battle Shout") cast("Shield Bash") StackCast("Sunder Armor",5) cast("Heroic Strike")
                 end
-
-            end
+end
 function BerserkerRage()
 	if not OnCooldown("Berserker Rage") then StanceCast("Berserker Stance") cast("Berserker Rage")
 	end
@@ -235,23 +239,6 @@ function UseHealingPotion()
     use("Superior Healing Potion")
     use("Greater Healing Potion")
 end
--- function fury_single()
--- --execute when below 20%. Try to ramp up to >=90 rage beforehand
--- --recklessness if 
--- --deathwish on cooldown/mighty rage potion/Juju Flurry. Mix deathwish in with Racial/Recklessness. Deathwish=30 sec, Recklessness=15sec
--- --blood fury on cooldown orc racial/troll racial  
---     --bloodthirst
---     --whirlwind
---     -- if below 25rage then overpower (30?) 30 
---     --overpower 50 rage then heroic strike 46 rage(?). only usable for 3 seconds after
-
-
---     --AOE needed WW 2+ targets
-
---     if not OnCooldown("Bloodthirst") then cast("Bloodthirst")
---         elseif not OnCooldown("Whirlwind") then cast("Whirlwind")
---             elseif not MyRage()>50 then cast("Heroic Strike")
---     end
 function breakFear()
     if not OnCooldown("Berserker Rage") then StanceCast("Berserker Stance")end
     if not HasFullControl() then cast("Berserker Rage") end
