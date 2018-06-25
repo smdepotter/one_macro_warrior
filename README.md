@@ -51,7 +51,7 @@ Open SM-Extended.LUA
 If you'd like to contribute, please fork the repository and use a feature
 branch. Pull requests are warmly welcome.
 
-If you are new to programming World of Warcraft Add-Ons then visit the [World of Warcraft API](http://wowwiki.wikia.com/wiki/World_of_Warcraft_API). Likewise [Kiha's Action Bar/ActionSlot post](http://www.wow-one.com/forum/topic/11085-rogue-macros/?do=findComment&comment=74639) will help identify each Action Slot numerically
+If you are new to programming World of Warcraft Add-Ons then visit the [World of Warcraft API](http://wowwiki.wikia.com/wiki/World_of_Warcraft_API). Visit Wowpedia to view both [API Events](https://wow.gamepedia.com/Category:API_events) and [Outdated API Events](https://wow.gamepedia.com/Category:API_events/Removed) Likewise [Kiha's Action Bar/ActionSlot post](http://www.wow-one.com/forum/topic/11085-rogue-macros/?do=findComment&comment=74639) will help identify each Action Slot numerically
 
 ## Links
 
