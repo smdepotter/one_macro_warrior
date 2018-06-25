@@ -152,7 +152,7 @@ function InMeleeRange()
   return CheckInteractDistance("target",3)
 end
 function TargetNotOnMe()
-	if UnitName("playertargettarget")~=UnitName("player") then return true
+	if UnitName("playertargettarget")~=UnitName("player") and not nil then return true
     else return false
      end
 end
