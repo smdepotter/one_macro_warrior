@@ -241,6 +241,5 @@ function Shoot()
     UseAction(61)
 end
 function NeedToThunderClap()
-if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 and InMeleeRange() then return true
-  else return false end
+if not buffed("Thunder Clap","target") and not OnCooldown("Thunder Clap") and MyRage()>=20 and InMeleeRange() then return true else return false end
 end
